@@ -36,7 +36,7 @@ const Success = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center">
+    <div className="h-screen w-full bg-gray-100 flex justify-center items-center absolute top-0 left-0">
       <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-xl font-bold text-center mb-4">
           {order
@@ -49,8 +49,10 @@ const Success = () => {
         {order && (
           <div className="flex flex-col justify-center items-center ">
             <p>
-              <strong>ID:</strong> ${order._id}
+              <strong>Product ID:</strong>
+              {order.productId}
             </p>
+
             <p>
               <strong>Product:</strong> {order.productName}
             </p>

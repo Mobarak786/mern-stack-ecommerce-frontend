@@ -1,15 +1,11 @@
 // components/Header.jsx
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 
-export default function Header({ currentTab, setCurrentTab }) {
+export default function Header() {
   const navigate = useNavigate();
-
-  const handleRoute = () => {
-    setCurrentTab("orders");
-    navigate("/orders");
-  };
+  const location = useLocation();
 
   return (
     <header className="bg-white shadow-sm border-b">
@@ -22,11 +18,10 @@ export default function Header({ currentTab, setCurrentTab }) {
           <nav className="flex space-x-8">
             <button
               onClick={() => {
-                setCurrentTab("home");
                 navigate("/");
               }}
               className={`px-3 py-2 text-sm font-medium rounded-md ${
-                currentTab === "home"
+                location.pathname === "/"
                   ? "bg-blue-100 text-blue-700"
                   : "text-gray-500 hover:text-gray-700"
               }`}
@@ -34,9 +29,11 @@ export default function Header({ currentTab, setCurrentTab }) {
               Home
             </button>
             <button
-              onClick={handleRoute}
+              onClick={() => {
+                navigate("/orders");
+              }}
               className={`px-3 py-2 text-sm font-medium rounded-md ${
-                currentTab === "orders"
+                location.pathname === "/orders"
                   ? "bg-blue-100 text-blue-700"
                   : "text-gray-500 hover:text-gray-700"
               }`}
