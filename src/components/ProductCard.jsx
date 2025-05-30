@@ -1,14 +1,16 @@
 import React from "react";
 import { ShoppingCart } from "lucide-react";
+import { SkeletonCard } from "./SkeletonCard";
 
 export const ProductCard = ({ product, onCheckout, isLoading, loadingId }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="mt-10 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       <div className="aspect-square bg-gray-100 flex items-center justify-center">
         <img
           src={product.image}
           alt={product.productName}
-          className="object-cover w-full h-full"
+          className="object-cover w-full h-full hover:scale-70 transition-transform duration-300"
+          loading="lazy"
         />
       </div>
       <div className="p-4">

@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Components
 import { Home } from "./components/Home";
 import { Orders } from "./components/Orders";
-// import { Toast } from "./components/Toast";
 import Success from "./components/Success";
 import { api } from "./api/index";
 import Header from "./components/Headers";
@@ -68,14 +67,6 @@ export default function ECommerceApp() {
             <Route path="/cancel" element={<Cancel />} />
           </Routes>
         </main>
-
-        {/* Toast */}
-        {/* <Toast
-          message={toast.message}
-          isVisible={toast.isVisible}
-          onClose={closeToast}
-          type={toast.type}
-        /> */}
       </div>
     </Router>
   );

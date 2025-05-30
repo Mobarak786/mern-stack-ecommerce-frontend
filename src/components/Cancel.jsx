@@ -5,7 +5,7 @@ const Cancel = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-red-50 flex items-center justify-center">
+    <div className="h-screen w-full  bg-red-50 flex items-center justify-center absolute top-0 left-0">
       <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md text-center">
         <h2 className="text-2xl font-bold text-red-600 mb-4">
           Payment Cancelled

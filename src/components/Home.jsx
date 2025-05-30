@@ -2,18 +2,25 @@ import { useEffect, useState } from "react";
 import { ProductCard } from "./ProductCard";
 import { Footer } from "./Footer";
 import { api } from "../api";
+import { SkeletonCard } from "./SkeletonCard";
 
 // Home Component
 export const Home = ({ onCheckout, isLoading, loadingId }) => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setLoading(true);
       try {
-        const data = await api.getProducts(); // Wait for the API response
-        setProducts(data); // Set the fetched products
+        const data = await api.getProducts();
+        setTimeout(() => {
+          setProducts(data);
+          setLoading(false);
+        }, 1000);
       } catch (error) {
         console.error("Error fetching products:", error);
+        setLoading(false);
       }
     };
 
@@ -38,15 +45,18 @@ export const Home = ({ onCheckout, isLoading, loadingId }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-        {products.map((product) => (
-          <ProductCard
-            key={product._id}
-            product={product}
-            onCheckout={onCheckout}
-            isLoading={isLoading}
-            loadingId={loadingId}
-          />
-        ))}
+        {loading
+          ? new Array(9).fill(null).map((_, i) => <SkeletonCard key={i} />)
+          : products.map((product) => (
+              <ProductCard
+                key={product._id}
+                product={product}
+                onCheckout={onCheckout}
+                isLoading={isLoading}
+                loadingId={loadingId}
+                loading={loading}
+              />
+            ))}
       </div>
       <Footer />
     </div>
